@@ -125,7 +125,7 @@
 
 function addContextMenu () {
   chrome.contextMenus.create({
-    title: "Sample title",
+    title: "You want some beer????????",
     id: chrome.runtime.id,
     contexts: ["all"],
     onclick: function(info, tab){
