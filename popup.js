@@ -131,9 +131,7 @@ function addContextMenu () {
     onclick: function(info, tab){
       console.log("Last error: ", chrome.runtime.lastError);
       console.log("Sample tab");
-    },
-    callback: function(){
-      console.log("Will this console log?");
     }
   });
 }
+addContextMenu();
