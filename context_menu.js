@@ -40,9 +40,9 @@ var child1 = chrome.contextMenus.create({
     console.log("child1 tab: " + JSON.stringify(tab));
     console.log("child1 info['height']: " + JSON.stringify(info['selectionText']));
     var beer = formatBeer(JSON.stringify(info['selectionText']));
-    
+
     beer_ad(beer);
-    
+
   }
 
 });
@@ -56,11 +56,11 @@ var child2 = chrome.contextMenus.create({
     console.log("child2 item " + info.menuItemId + " was clicked");
     console.log("child2 info: " + JSON.stringify(info));
     console.log("child2 tab: " + JSON.stringify(tab));
-    var beer = formatBeer(JSON.stringify(info['selectionText']));
+    var beer = info['selectionText'];
     google(beer);
     // console.log("beer: " + beer);
     // confirm('Getting info for: '+ beer);
-    
+
   }
 
 
