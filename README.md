@@ -11,7 +11,7 @@ Installation
 -----------
 
     - Clone repo
-    - Navigate to chrome://extensions and 'load unpacked extension' (may have to check 'Developer Mode')
+    - Navigate to chrome://extensions and 'load unpacked extension' (check 'Developer Mode')
     - Locate the repo
 
 Usage
