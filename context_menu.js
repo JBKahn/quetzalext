@@ -17,6 +17,17 @@ var formatBeer = function(beer){
   return removed;
 };
 
+var beer_ad = function(term){
+  var beer = formatBeer(term);
+  var url = "http://www.beeradvocate.com/search/?q=" + beer + "&qt=beer";
+    window.open(url, '_blank');
+};
+
+var google = function(term){
+  var url = "https://www.google.com/search?q=" + encodeURIComponent(term);
+  window.open(url, '_blank');
+};
+
 
 var child1 = chrome.contextMenus.create({
   title: "Search on BeerAdvocate",
@@ -29,16 +40,15 @@ var child1 = chrome.contextMenus.create({
     console.log("child1 tab: " + JSON.stringify(tab));
     console.log("child1 info['height']: " + JSON.stringify(info['selectionText']));
     var beer = formatBeer(JSON.stringify(info['selectionText']));
-    console.log("beer: "+beer);
-    // confirm('Getting info for: '+ beer);
-    var url = "http://www.beeradvocate.com/search/?q=" + beer + "&qt=beer";
-    window.open(url, '_blank');
+    
+    beer_ad(beer);
+    
   }
 
 });
 
 var child2 = chrome.contextMenus.create({
-  title: "Search on some other beer website",
+  title: "Search Google",
   parentId: parent1,
   contexts: ["selection"],
 
@@ -46,8 +56,15 @@ var child2 = chrome.contextMenus.create({
     console.log("child2 item " + info.menuItemId + " was clicked");
     console.log("child2 info: " + JSON.stringify(info));
     console.log("child2 tab: " + JSON.stringify(tab));
+    var beer = formatBeer(JSON.stringify(info['selectionText']));
+    google(beer);
+    // console.log("beer: " + beer);
+    // confirm('Getting info for: '+ beer);
+    
   }
 
 
 });
+
+
 
