@@ -22,3 +22,5 @@ Usage
     - Right click
     - Navigate to 'Quetzale'
     - Search on your website of choice
+    
+![SSS1](https://raw.githubusercontent.com/sleiendecker/quetzalext/master/icons/screenshot.png)
