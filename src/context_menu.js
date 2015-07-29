@@ -58,13 +58,15 @@ var child2 = chrome.contextMenus.create({
     console.log("child2 tab: " + JSON.stringify(tab));
     var beer = info['selectionText'];
     google(beer);
-    // console.log("beer: " + beer);
-    // confirm('Getting info for: '+ beer);
-
   }
-
-
 });
 
-
+var child3 = chrome.contextMenus.create({
+  title: "Find best beer from this list",
+  parentId: parent1,
+  contexts: ["selection"],
+  onclick: function(info, tab){
+    alert("The best beer is Miller Lite!");
+  }
+});
 
