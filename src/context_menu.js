@@ -10,7 +10,6 @@ var parent1 = chrome.contextMenus.create({
   contexts: ["selection"]
 });
 
-
 var formatBeer = function(beer){
   var formatted =  beer.replace(/\s+/g, '+').toLowerCase();
   var removed = formatted.replace(/\"/g, "");
@@ -19,15 +18,17 @@ var formatBeer = function(beer){
 
 var beer_ad = function(term){
   var beer = formatBeer(term);
-  var url = "http://www.beeradvocate.com/search/?q=" + beer + "&qt=beer";
+  var url  = "http://www.beeradvocate.com/search/?q=" + beer + "&qt=beer";
   $.ajax({
     url: url,
     type: 'GET',
     success: function(data){
       var html = $.parseHTML(data);
-      var beeradvocateBeer = $(html).find('#ba-content').children().last().find('ul').children().first().children().first().attr('href');
-      var beeradvcateURL = "http://www.beeradvocate.com" + beeradvocateBeer;
-      window.open(beeradvcateURL, '_blank');
+
+      // the greatest jquery to ever jquery
+      var baRelativePath = $(html).find('#ba-content').children().last().find('ul').children().first().children().first().attr('href');
+      var baFullURL   = "http://www.beeradvocate.com" + baRelativePath;
+      window.open(baFullURL, '_blank');
     }
   });
 };
@@ -52,7 +53,6 @@ var child2 = chrome.contextMenus.create({
   title: "Search Google",
   parentId: parent1,
   contexts: ["selection"],
-
   onclick: function(info, tab){
     console.log("child2 item " + info.menuItemId + " was clicked");
     console.log("child2 info: " + JSON.stringify(info));
