@@ -24,11 +24,19 @@ var beer_ad = function(term){
     type: 'GET',
     success: function(data){
       var html = $.parseHTML(data);
+      var urls = $(html).find('#ba-content').find('a');
 
-      // the greatest jquery to ever jquery
-      var baRelativePath = $(html).find('#ba-content').children().last().find('ul').children().first().children().first().attr('href');
-      var baFullURL   = "http://www.beeradvocate.com" + baRelativePath;
-      window.open(baFullURL, '_blank');
+      var beerAdvocateUrl;
+      for (var i = 0; i < urls.length; i++) {
+        if (urls[i].getAttribute('href').indexOf('/beer/profile/')) {
+          beerAdvocateUrl = "http://www.beeradvocate.com" + urls[i].getAttribute('href');
+          break;
+        }
+      }
+      
+      if (beerAdvocateUrl) {
+        window.open(beerAdvocateUrl, '_blank');
+      }
     }
   });
 };
