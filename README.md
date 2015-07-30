@@ -24,3 +24,4 @@ Usage
     - Search on your website of choice
     
 ![SSS1](https://raw.githubusercontent.com/sleiendecker/quetzalext/master/icons/screenshot.png)
+![SS2](http://i.gyazo.com/3b4cd665c328f4754b5fcf9eae26ae51.gif)
