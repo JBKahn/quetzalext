@@ -9,7 +9,7 @@
     "default_icon": "icons/icon.png"
   },
   "background": {
-    "scripts": ["src/context_menu.js"]
+    "scripts": ["src/context_menu.js", "src/jquery.js"]
   },
   "permissions": [
     "activeTab",

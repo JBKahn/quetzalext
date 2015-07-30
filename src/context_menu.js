@@ -20,7 +20,16 @@ var formatBeer = function(beer){
 var beer_ad = function(term){
   var beer = formatBeer(term);
   var url = "http://www.beeradvocate.com/search/?q=" + beer + "&qt=beer";
-    window.open(url, '_blank');
+  $.ajax({
+    url: url,
+    type: 'GET',
+    success: function(data){
+      var html = $.parseHTML(data);
+      var beeradvocateBeer = $(html).find('#ba-content').children().last().find('ul').children().first().children().first().attr('href');
+      var beeradvcateURL = "http://www.beeradvocate.com" + beeradvocateBeer;
+      window.open(beeradvcateURL, '_blank');
+    }
+  });
 };
 
 var google = function(term){
@@ -33,18 +42,10 @@ var child1 = chrome.contextMenus.create({
   title: "Search on BeerAdvocate",
   parentId: parent1,
   contexts: ["selection"],
-
   onclick: function(info, tab){
-    console.log("child1 item " + info.menuItemId + " was clicked");
-    console.log("child1 info: " + JSON.stringify(info));
-    console.log("child1 tab: " + JSON.stringify(tab));
-    console.log("child1 info['height']: " + JSON.stringify(info['selectionText']));
     var beer = formatBeer(JSON.stringify(info['selectionText']));
-
     beer_ad(beer);
-
   }
-
 });
 
 var child2 = chrome.contextMenus.create({
@@ -69,4 +70,3 @@ var child3 = chrome.contextMenus.create({
     alert("The best beer is Miller Lite!");
   }
 });
-
